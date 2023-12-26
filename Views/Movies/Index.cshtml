@@ -1,0 +1,57 @@
+﻿@*Define model*@
+@model IEnumerable<Movie>
+
+@{
+	ViewData["Title"] = "List of Movies";
+}
+
+<main class="container">
+    <header>
+        <h2>Trending Movies</h2>
+        <a>Explore All</a>
+    </header>
+    <section class="movie-tray">
+        @foreach (var item in Model)
+        {
+            /*
+            @item.Name
+            @item.ImageURL
+            @item.Id
+            @item.Cinema.Name
+            @item.MovieCategory
+            @item.StartDate.ToString("dd MMM yyyy")
+            @item.EndDate.ToString("dd MMM yyyy")
+            @item.Price.ToString("c")
+            */
+            <div class="movie-item" key=@item.Id>
+                <a class="movie-wrapper" asp-action="Details" asp-route-id="@item.Id">
+                <img src="@item.ImageURL" alt="@item.Name">
+                <div class="movie-details">
+                    <h3>@item.Name</h3>
+                    <p>@item.Description</p>
+                    <div>
+                        @if (DateTime.Now >= item.StartDate && DateTime.Now <= item.EndDate)
+                        {
+                            <span>AVAILABLE</span>
+                        }
+                        else if (DateTime.Now > item.EndDate)
+                        {
+                            <span>EXPIRED</span>
+                        }
+                        else
+                        {
+                            <span>UPCOMING</span>
+                        }
+                    </div>
+                        <a class="@((DateTime.Now > item.EndDate ? "disabled" : "add-to-cart-btn")) @((DateTime.Now < item.StartDate) ? "disabled" : "add-to-cart-btn")" asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@item.Id">Add Cart</a>
+                </div>
+                <div class="movie-genre">@item.MovieCategory</div>
+                </a>
+            </div>
+        }
+    </section>
+</main>
+@await Html.PartialAsync("_CreateItem", "Movies")
+@*Define ViewData*@
+
+@*Write Code*@

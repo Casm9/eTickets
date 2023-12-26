@@ -1,0 +1,102 @@
+﻿* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+img {
+    max-width: 100%;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.movie-tray {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+.movie-item {
+    position: relative;
+    cursor: pointer;
+}
+
+.movie-genre {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #EF2917;
+    padding: 1rem;
+    color: white;
+}
+
+.movie-details {
+    position: absolute;
+    bottom: 50px;
+    left: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background-color: rgba(0,0,0,0.5);
+    gap: 1rem;
+}
+
+.movie-wrapper {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.add-to-cart-btn {
+    background-color: #131515;
+    border-radius: 5px;
+    color: #ffffff;
+    text-decoration: none;
+    align-self: flex-start;
+    padding: .5rem 1rem;
+}
+
+.disabled {
+    background-color: #2B2C28;
+    border-radius: 5px;
+    color: #ffffff;
+    text-decoration: none;
+    align-self: flex-start;
+    padding: .5rem 1rem;
+    pointer-events: none;
+}
+
+.movie-detail-view {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2rem;
+}
+
+.movie-detail-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.movie-detail-view-cast {
+    display: flex;
+    gap: 1rem;
+}
+
+.detail-view-btns {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.actor-item {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    gap: 1rem;
+}

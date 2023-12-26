@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - eTickets</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <div>
+                <a asp-controller="Movies" asp-action="Index">eTickets</a>
+                <button type="button">
+                    <span></span>
+                </button>
+                <div>
+                    <ul>
+                        <li>
+                            <a asp-area="" asp-controller="Movies" asp-action="Index"> <i></i>Movies</a>
+                        </li>
+                        <li>
+                            <a href="#">
+                              <i></i>  Management
+                            </a>
+
+                            <div>
+                                <a asp-controller="Cinemas" asp-action="Index"> <i></i> Cinemas</a>
+                                <a asp-controller="Producers" asp-action="Index"> <i></i> Producers</a>
+                                <a asp-controller="Actors" asp-action="Index"> <i></i> Actors</a>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <form asp-controller="Movies" asp-action="Filter">
+                        <input placeholder="Search for a movie...">
+                        <button type="submit"><i></i></button>
+                    </form>
+
+                    <ul>
+                        @await Component.InvokeAsync("ShoppingCartSummary")
+                    </ul>
+
+                    @*User profile section*@
+                    <div>
+                        <button>
+                            <i></i> Hello User
+                        </button>
+                        <ul>
+                            <li>
+                                <a asp-controller="Orders" asp-action="Index">
+                                    <i></i> Orders
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div>
+        <main>
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer>
+        <div>
+            &copy; 2023 - eTickets
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

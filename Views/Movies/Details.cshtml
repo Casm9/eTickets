@@ -1,0 +1,68 @@
+﻿@*Define model*@
+@model Movie
+
+@{
+    ViewData["Title"] = "Movie details";
+}
+
+<main class="container">
+    <section class="movie-detail-view">
+        <img src="@Model.ImageURL" alt="@Model.Name">
+        <div class="movie-detail-info">
+            <h1>@Model.Name</h1>
+            <p>@Model.Description</p>
+            <p>
+                Cinema
+                <a asp-controller="Cinemas" asp-action="Details" asp-route-id="@Model.CinemaId">
+                    @Model.Cinema.Name
+                </a>
+            </p>
+            <p>
+                Producer
+                <a asp-controller="Producers" asp-action="Details" asp-route-id="@Model.ProducerId">
+                    @Model.Producer.FullName
+                </a>
+            </p>
+            <p>Category @Model.MovieCategory</p>
+            <p>Start Date @Model.StartDate.ToString("dd MMM yyyy")</p>
+            <p>End Date @Model.EndDate.ToString("dd MMM yyyy")</p>
+            <div>
+                Status
+                @if (DateTime.Now >= Model.StartDate && DateTime.Now <= Model.EndDate)
+                {
+                    <span>AVAILABLE</span>
+                }
+                else if (DateTime.Now > Model.EndDate)
+                {
+                    <span>EXPIRED</span>
+                }
+                else
+                {
+                    <span>UPCOMING</span>
+                }
+            </div>
+            <div class="detail-view-btns">
+                <a class="" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+                <a asp-action="Index">Back to List</a>
+                <a class="@((DateTime.Now > Model.EndDate) ? "disabled" : "add-to-cart-btn" ) @((DateTime.Now < Model.StartDate) ? "disabled" : "add-to-cart-btn" )" asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@Model.Id">Add to Cart @Model.Price.ToString("c")</a>
+            </div>
+        </div>
+    </section>
+    <section>
+        <header>
+            <h2>Cast</h2>
+        </header>
+        <section class="movie-detail-view-cast">
+            @foreach (var actor in Model.Actors_Movies)
+            {
+                <div class="actor-item">
+                    <img src="@actor.Actor.ProfilePictureURL" />
+                    <a asp-controller="Actors" asp-action="Details" asp-route-id="@actor.ActorId">@actor.Actor.FullName</a>
+                </div>
+            }
+        </section>
+    </section>
+</main>
+@*Define ViewData*@
+
+@*Write Code*@

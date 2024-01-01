@@ -4,43 +4,34 @@
 	ViewData["Title"] = "Update Cinema";
 }
 
-<div class="row text">
-	<div class="col-md-8 offset-2">
-		<p>
-			<h1>Update Cinema</h1>
-		</p>
-		<div class="row">
-			<div class="col-md-8 offset-2">
-				<form asp-action="Edit">
-					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-					<div class="form-group text-center">
-						<img id="CinemaLogoPreview" class="border-info rounded-circle" style="max-width: 150px" />
-					</div>
-					<div class="form-group">
-						<label asp-for="Logo" class="control-label"></label>
-						<input asp-for="Logo" class="form-control" />
-						<span asp-validation-for="Logo" class="text-danger"></span>
-					</div>
-					<div class="form-group">
-						<label asp-for="Name" class="control-label"></label>
-						<input asp-for="Name" class="form-control" />
-						<span asp-validation-for="Name" class="text-danger"></span>
-					</div>
-					<div class="form-group">
-						<label asp-for="Description" class="control-label"></label>
-						<input asp-for="Description" class="form-control" />
-						<span asp-validation-for="Description" class="text-danger"></span>
-					</div>
+<main class="container">
+	<div class="edit-form">
+		<h2>Update Cinema</h2>
 
-					<div class="form-group">
-						<input type="submit" value="Update" class="btn btn-outline-success float-right" />
-						<a class="btn btn-outline-secondary" asp-action="Index">Show All</a>
-					</div>
-				</form>
+		<form asp-action="Edit">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+			<img id="CinemaLogoPreview" />
+
+			<label asp-for="Logo"></label>
+			<input asp-for="Logo" />
+			<span asp-validation-for="Logo"></span>
+
+			<label asp-for="Name"></label>
+			<input asp-for="Name" />
+			<span asp-validation-for="Name"></span>
+
+			<label asp-for="Description"></label>
+			<textarea asp-for="Description"></textarea>
+			<span asp-validation-for="Description"></span>
+
+			<div>
+				<input type="submit" value="Update" class="btn" />
+				<a class="btn" asp-action="Index">Show All</a>
 			</div>
-		</div>
+		</form>
 	</div>
-</div>
+</main>
 
 @section Scripts{
 	<script>

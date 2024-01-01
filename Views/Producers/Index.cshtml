@@ -1,0 +1,26 @@
+﻿@*Define model*@
+@model IEnumerable<Producer>
+
+@{
+	ViewData["Title"] = "List of Producer";
+}
+
+<main class="container">
+	<section class="content-grid">
+		@foreach (var item in Model)
+		{
+			<div>
+				<a asp-action="Details" asp-route-id="@item.Id">
+					<img src="@item.ProfilePictureURL" alt="@item.FullName" />
+					<p>@Html.DisplayFor(modelItem => item.FullName)</p>
+					<p>@Html.DisplayFor(modelItem => item.Bio)</p>
+				</a>
+			</div>
+		}
+	</section>
+</main>
+
+@await Html.PartialAsync("_CreateItem", "Producers")
+@*Define ViewData*@
+
+@*Write Code*@

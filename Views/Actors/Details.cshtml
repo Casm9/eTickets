@@ -1,0 +1,44 @@
+﻿@model Actor
+
+@{
+	ViewData["Title"] = "Details of the actor";
+}
+
+<main class="container">
+	<section>
+		<header>
+			<h2>Details for @Model.FullName</h2>
+			<img id="ProfilePicturePreview" />
+			<div>
+				<label asp-for="ProfilePictureURL"></label>
+				<input asp-for="ProfilePictureURL" readonly />
+				<span asp-validation-for="ProfilePictureURL"></span>
+			</div>
+		</header>
+		<table class="table-details">
+			<tr>
+				<td>Full Name</td>
+				<td>@Model.FullName</td>
+			</tr>
+
+			<tr>
+				<td>Bio</td>
+				<td>@Model.Bio</td>
+			</tr>
+		</table>
+		<div>
+			<a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+			<a asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
+			<a asp-action="Index">Show All</a>
+		</div>
+	</section>
+</main>
+
+@section Scripts{
+	<script>
+		$(document).ready(function () {
+			var output = document.getElementById('ProfilePicturePreview');
+			output.src = $("#ProfilePictureURL").val();
+		})
+	</script>
+}

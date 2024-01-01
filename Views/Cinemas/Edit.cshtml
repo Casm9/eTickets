@@ -1,0 +1,49 @@
+﻿@model Cinema
+
+@{
+	ViewData["Title"] = "Update Cinema";
+}
+
+<main class="container">
+	<div class="edit-form">
+		<h2>Update Cinema</h2>
+
+		<form asp-action="Edit">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+			<img id="CinemaLogoPreview" />
+
+			<label asp-for="Logo"></label>
+			<input asp-for="Logo" />
+			<span asp-validation-for="Logo"></span>
+
+			<label asp-for="Name"></label>
+			<input asp-for="Name" />
+			<span asp-validation-for="Name"></span>
+
+			<label asp-for="Description"></label>
+			<textarea asp-for="Description"></textarea>
+			<span asp-validation-for="Description"></span>
+
+			<div>
+				<input type="submit" value="Update" class="btn" />
+				<a class="btn" asp-action="Index">Show All</a>
+			</div>
+		</form>
+	</div>
+</main>
+
+@section Scripts{
+	<script>
+
+		$(document).ready(function (){
+			var output = document.getElementById('CinemaLogoPreview');
+			output.src = $("#Logo").val();
+		})
+
+		$("#Logo").on("change", function () {
+			var output = document.getElementById('CinemaLogoPreview');
+			output.src = $(this).val();
+		})
+	</script>
+}

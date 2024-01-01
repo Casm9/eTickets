@@ -1,0 +1,70 @@
+﻿@model NewMovieVM
+@using eTickets.Data.Enum;
+
+
+@{
+	ViewData["Title"] = "Create a new movie";
+}
+
+<main class="container">
+	<h2>Create a new movie</h2>
+	<form asp-action="Create">
+		<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+		<label asp-for="Name"></label>
+		<input asp-for="Name" />
+		<span asp-validation-for="Name"></span>
+
+		<label asp-for="StartDate"></label>
+		<input asp-for="StartDate" type="date" />
+		<span asp-validation-for="StartDate"></span>
+
+		<label asp-for="EndDate"></label>
+		<input asp-for="EndDate" type="date" />
+		<span asp-validation-for="EndDate"></span>
+
+		<label asp-for="Price"></label>
+		<input asp-for="Price" type="number" />
+		<span asp-validation-for="Price"></span>
+
+		<label asp-for="ImageURL"></label>
+		<input asp-for="ImageURL" />
+		<span asp-validation-for="ImageURL"></span>
+
+		<label asp-for="CinemaId"></label>
+		<select asp-for="CinemaId" asp-items="ViewBag.Cinemas"></select>
+		<span asp-validation-for="CinemaId"></span>
+
+		<label asp-for="MovieCategory"></label>
+		<select asp-for="MovieCategory" asp-items="Html.GetEnumSelectList<MovieCategory>()"></select>
+		<span asp-validation-for="MovieCategory"></span>
+
+		<label asp-for="ProducerId"></label>
+		<select asp-for="ProducerId" asp-items="ViewBag.Producers"></select>
+		<span asp-validation-for="ProducerId"></span>
+
+		<label asp-for="ActorIds"></label>
+		<select asp-for="ActorIds" asp-items="ViewBag.Actors" multiple></select>
+		<span asp-validation-for="ActorIds"></span>
+
+		<label asp-for="Description"></label>
+		<textarea asp-for="Description"></textarea>
+		<span asp-validation-for="Description"></span>
+
+		<img id="ImageUrlPreview" />
+
+		<div>
+			<input type="submit" value="Create" class="btn" />
+			<a class="btn" asp-action="Index">Show all</a>
+		</div>
+	</form>
+</main>
+
+@section Scripts{
+	<script>
+		$("#ImageURL").on("change", function() {
+			var output = document.getElementById("ImageUrlPreview");
+			output.src = $(this).val();
+		})
+	</script>
+}

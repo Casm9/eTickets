@@ -1,0 +1,49 @@
+﻿@model Actor
+
+@{
+	ViewData["Title"] = "Update Actor";
+}
+
+<main class="container">
+	<div class="edit-form">
+		<h2>Edit Actor</h2>
+
+		<form asp-action="Edit">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+			<img id="ProfilePicturePreview" />
+
+			<label asp-for="ProfilePictureURL"></label>
+			<input asp-for="ProfilePictureURL"/>
+			<span asp-validation-for="ProfilePictureURL"></span>
+
+			<label asp-for="FullName"></label>
+			<input asp-for="FullName"/>
+			<span asp-validation-for="FullName"></span>
+
+			<label asp-for="Bio"></label>
+			<input asp-for="Bio"/>
+			<span asp-validation-for="Bio"></span>
+
+			<div>
+				<input type="submit" value="Update" class="btn" />
+				<a class="btn" asp-action="Index">Show All</a>
+			</div>
+		</form>
+	</div>
+</main>
+
+@section Scripts{
+	<script>
+
+		$(document).ready(function (){
+			var output = document.getElementById('ProfilePicturePreview');
+			output.src = $("#ProfilePictureURL").val();
+		})
+
+		$("#ProfilePictureURL").on("change", function () {
+			var output = document.getElementById('ProfilePicturePreview');
+			output.src = $(this).val();
+		})
+	</script>
+}
